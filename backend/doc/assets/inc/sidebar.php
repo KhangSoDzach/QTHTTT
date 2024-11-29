@@ -129,7 +129,7 @@
                                 </ul>
                             </li> -->
 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="mdi mdi-cash-refund "></i>
                                     <span> Payrolls </span>
@@ -141,7 +141,32 @@
                                         <a href="his_doc_view_payrolls.php">My Payrolls</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
+                            <!-- <li>
+                                <a href="javascript: void(0);">
+                                    <i class="mdi mdi-scissors-cutting "></i>
+                                    <span> Surgical / Theatre </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li>
+                                        <a href="his_admin_add_equipment.php">Add Equipment</a>
+                                    </li>
+                                    <li>
+                                        <a href="his_admin_manage_equipment.php">Manage Equipments</a>
+                                    </li>
+                                    <li>
+                                        <a href="his_admin_add_theatre_patient.php">Add Patient</a>
+                                    </li>
+                                    <li>
+                                        <a href="his_admin_manage_theatre_patient.php">Manage Patients</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="his_admin_surgery_records.php">Surgery Records</a>
+                                    </li>
+                                </ul>
+                            </li> -->
 
                             
 

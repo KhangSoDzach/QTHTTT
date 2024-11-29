@@ -230,7 +230,7 @@
                                 </ul>
                             </li> -->
 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="mdi mdi-scissors-cutting "></i>
                                     <span> Surgical / Theatre </span>
@@ -254,9 +254,9 @@
                                         <a href="his_admin_surgery_records.php">Surgery Records</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="mdi mdi-cash-refund "></i>
                                     <span> Payrolls </span>
@@ -273,7 +273,7 @@
                                         <a href="his_admin_generate_payrolls.php">Generate Payrolls</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
                             <li>
                                 <a href="javascript: void(0);">
