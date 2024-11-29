@@ -48,11 +48,11 @@
         <div id="wrapper">
 
             <!-- Topbar Start -->
-            <?php include("assets/inc/nav.php");?>
+            <?php include("assets/inc/navp.php");?>
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-            <?php include("assets/inc/sidebar.php");?>
+            <?php include("assets/inc/sidebarp.php");?>
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->

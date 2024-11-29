@@ -1,28 +1,41 @@
 <?php
     session_start();
     include('assets/inc/config.php');//get configuration file
-    if(isset($_POST['admin_login']))
+    if(isset($_POST['login']))
     {
-        $ad_email=$_POST['ad_email'];
-        $ad_pwd=sha1(md5($_POST['ad_pwd']));//double encrypt to increase security
-        $stmt=$mysqli->prepare("SELECT ad_email ,ad_pwd , ad_id FROM his_admin WHERE ad_email=? AND ad_pwd=? ");//sql to log in user
-        $stmt->bind_param('ss',$ad_email,$ad_pwd);//bind fetched parameters
-        $stmt->execute();//execute bind
-        $stmt -> bind_result($ad_email,$ad_pwd,$ad_id);//bind result
-        $rs=$stmt->fetch();
-        $_SESSION['ad_id']=$ad_id;//Assign session to admin id
-        //$uip=$_SERVER['REMOTE_ADDR'];
-        //$ldate=date('d/m/Y h:i:s', time());
-        if($rs)
-            {//if its sucessfull
-                header("location:his_admin_dashboard.php");
-            }
+        $email = $_POST['email'];
+        $pwd = sha1(md5($_POST['pwd']));//double encrypt to increase security
+        
+        // Kiểm tra xem người dùng là admin hay surgery manager
+        $stmt = $mysqli->prepare("SELECT ad_email ,ad_pwd , ad_id FROM his_admin WHERE ad_email=? AND ad_pwd=? ");
+        $stmt->bind_param('ss', $email, $pwd);
+        $stmt->execute();
+        $stmt->store_result();
 
-        else
-            {
+        if($stmt->num_rows > 0){
+            $stmt->bind_result($ad_email, $ad_pwd, $ad_id);
+            $stmt->fetch();
+            $_SESSION['ad_id'] = $ad_id;//Assign session to admin id
+            header("location:his_admin_dashboard.php");
+        } else {
+            $stmt = $mysqli->prepare("SELECT sm_email, sm_pwd, sm_id FROM his_surgery_managers WHERE sm_email=? AND sm_pwd=? ");
+            $stmt->bind_param('ss', $email, $pwd);
+            $stmt->execute();
+            $stmt->store_result();
+            if($stmt->num_rows > 0){
+                $stmt->bind_result($sm_email, $sm_pwd ,$sm_id);
+                $stmt->fetch();
+                $_SESSION['sm_id'] = $sm_id;
+                $_SESSION['sm_number'] = $sm_number;
+                header("location:his_surgery_dashboard.php"); // Điều hướng đến trang dashboard của surgery manager
+            } 
+        }
+
+        if($stmt->num_rows == 0)
+        {
             #echo "<script>alert('Access Denied Please Check Your Credentials');</script>";
-                $err = "Access Denied Please Check Your Credentials";
-            }
+            $err = "Access Denied Please Check Your Credentials";
+        }
     }
 ?>
 <!--End Login-->

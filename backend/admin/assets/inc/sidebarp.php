@@ -10,7 +10,7 @@
                             <li class="menu-title">Navigation</li>
 
                             <li>
-                                <a href="his_admin_dashboard.php">
+                                <a href="his_surgery_dashboard.php">
                                     <i class="fe-airplay"></i>
                                     <span> Dashboard </span>
                                 </a>
@@ -43,7 +43,7 @@
                                 </ul>
                             </li> -->
 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="mdi mdi-doctor"></i>
                                     <span> Employees </span>
@@ -67,7 +67,7 @@
                                         <a href="his_admin_transfer_employee.php">Transfer Employee</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
                             <!-- <li>
                                 <a href="javascript: void(0);">
@@ -108,7 +108,7 @@
                                 </ul>
                             </li> -->
 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="mdi mdi-cash-multiple "></i>
                                     <span> Accounting </span>
@@ -132,7 +132,7 @@
                                     
                                     
                                 </ul>
-                            </li>
+                            </li> -->
                             <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class=" fas fa-funnel-dollar "></i>
@@ -152,7 +152,7 @@
                                 </ul>
                             </li> -->
                 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-share"></i>
                                     <span> Reporting </span>
@@ -179,9 +179,9 @@
                                     </li>
                                     
                                 </ul>
-                            </li>
+                            </li> -->
 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-file-text"></i>
                                     <span> Medical Records </span>
@@ -196,7 +196,7 @@
                                     </li>
                                     
                                 </ul>
-                            </li>
+                            </li> -->
 
                             <!-- <li>
                                 <a href="javascript: void(0);">
@@ -256,7 +256,7 @@
                                 </ul>
                             </li>
 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="mdi mdi-cash-refund "></i>
                                     <span> Payrolls </span>
@@ -273,9 +273,9 @@
                                         <a href="his_admin_generate_payrolls.php">Generate Payrolls</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
-                            <li>
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="fas fa-user-tag"></i>
                                     <span> Vendors </span>
@@ -290,8 +290,8 @@
                                     </li>
                                     
                                 </ul>
-                            </li>
-                            <li>
+                            </li> -->
+                            <!-- <li>
                                 <a href="javascript: void(0);">
                                     <i class="fas fa-lock"></i>
                                     <span> Password Resets </span>
@@ -303,7 +303,7 @@
                                     </li>
                                                                         
                                 </ul>
-                            </li>
+                            </li> -->
 
                         </ul>
 

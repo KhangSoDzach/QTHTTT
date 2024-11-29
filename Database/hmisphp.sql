@@ -57,7 +57,7 @@ CREATE TABLE `his_admin` (
   `ad_lname` varchar(200) DEFAULT NULL,
   `ad_email` varchar(200) DEFAULT NULL,
   `ad_pwd` varchar(200) DEFAULT NULL,
-  `ad_dpic` varchar(200) DEFAULT NULL
+  `ad_dpic` varchar(200) DEFAULT NULL	
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -68,7 +68,21 @@ INSERT INTO `his_admin` (`ad_id`, `ad_fname`, `ad_lname`, `ad_email`, `ad_pwd`, 
 (1, 'System', 'Administrator', 'admin@mail.com', '4c7f5919e957f354d57243d37f223cf31e9e7181', 'doc-icon.png');
 
 -- --------------------------------------------------------
+CREATE TABLE `his_surgery_managers` (
+    `sm_id` INT(20) NOT NULL AUTO_INCREMENT,
+    `sm_fname` VARCHAR(200) DEFAULT NULL,
+    `sm_lname` VARCHAR(200) DEFAULT NULL,
+    `sm_email` VARCHAR(200) DEFAULT NULL,
+    `sm_pwd` VARCHAR(200) DEFAULT NULL,
+    `sm_dpic` VARCHAR(200) DEFAULT NULL,
+    PRIMARY KEY (`sm_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `his_surgery_managers` (`sm_fname`, `sm_lname`, `sm_email`, `sm_pwd`, `sm_dpic`) 
+VALUES 
+('Nguyễn', 'Văn A', 'nguyenvana@example.com', 'hashed_password_1', 'nguyen_van_a.jpg'),
+('Trần', 'Thị B', 'tranthib@example.com', 'hashed_password_2', 'tran_thi_b.jpg'),
+('Lê', 'Văn C', 'levanc@example.com', 'hashed_password_3', 'le_van_c.jpg');
 --
 -- Table structure for table `his_assets`
 --
