@@ -3,11 +3,11 @@
   include('assets/inc/config.php');
   include('assets/inc/checklogin.php');
   check_login();
-  $aid=$_SESSION['ad_id'];
-  if(isset($_GET['delete_s_number']))
+  $aid=$_SESSION['doc_id'];
+  if(isset($_GET['delete']))
   {
-        $id=intval($_GET['delete_s_number']);
-        $adn="delete from his_surgery where s_number=?";
+        $id=intval($_GET['delete']);
+        $adn="delete from his_patients where pat_id=?";
         $stmt= $mysqli->prepare($adn);
         $stmt->bind_param('i',$id);
         $stmt->execute();
@@ -15,7 +15,7 @@
   
           if($stmt)
           {
-            $success = "Surgery Patient's  Records Deleted";
+            $success = "Patients Records Deleted";
           }
             else
             {
@@ -35,11 +35,11 @@
         <div id="wrapper">
 
             <!-- Topbar Start -->
-                <?php include('assets/inc/navp.php');?>
+                <?php include('assets/inc/nav.php');?>
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-                <?php include("assets/inc/sidebarp.php");?>
+                <?php include("assets/inc/sidebar.php");?>
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -60,10 +60,10 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Surgery | Theatre</a></li>
-                                            <li class="breadcrumb-item active">Manage Patient</li>
+                                            <li class="breadcrumb-item active">Add Patient</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Manage Patients In Surgery</h4>
+                                    <h4 class="page-title">Add Patient</h4>
                                 </div>
                             </div>
                         </div>     
@@ -98,9 +98,8 @@
                                                 <th>#</th>
                                                 <th data-toggle="true">Patient Name</th>
                                                 <th data-hide="phone">Patient Number</th>
-                                                <th data-hide="phone">Patient Ailment</th>
-                                                <th data-hide="phone">Surgeon </th>
-                                                <th data-hide="phone">Surgery Date </th>
+                                                <th data-hide="phone">Patient Address</th>
+                                                <th data-hide="phone">Patient Category</th>
                                                 <th data-hide="phone">Action</th>
                                             </tr>
                                             </thead>
@@ -109,7 +108,7 @@
                                                 *get details of allpatients
                                                 *
                                             */
-                                                $ret="SELECT * FROM  his_surgery ORDER BY RAND() "; 
+                                                $ret="SELECT * FROM  his_patients ORDER BY RAND() "; 
                                                 //sql code to get to ten docs  randomly
                                                 $stmt= $mysqli->prepare($ret) ;
                                                 $stmt->execute() ;//ok
@@ -117,22 +116,19 @@
                                                 $cnt=1;
                                                 while($row=$res->fetch_object())
                                                 {
-                                                    $mysqlDateTime = $row->s_pat_date;
                                             ?>
 
                                                 <tbody>
                                                 <tr>
                                                     <td><?php echo $cnt;?></td>
-                                                    <td><?php echo $row->s_pat_name;?></td>
-                                                    <td><?php echo $row->s_pat_number;?></td>
-                                                    <td><?php echo $row->s_pat_ailment;?></td>
-                                                    <td><?php echo $row->s_doc;?></td>
-                                                    <td><?php echo date("d/m/Y", strtotime($mysqlDateTime));?></td>
-
+                                                    <td><?php echo $row->pat_fname;?> <?php echo $row->pat_lname;?></td>
+                                                    <td><?php echo $row->pat_number;?></td>
+                                                    <td><?php echo $row->pat_addr;?></td>
+                                                    <td><?php echo $row->pat_type;?></td>
                                                     
                                                     <td>
-                                                        <a href="his_admin_update_single_patient_surgery.php?s_number=<?php echo $row->s_number;?>" class="badge badge-success"><i class="fas fa-edit"></i> Update</a>
-                                                        <a href="his_admin_manage_theatre_patient.php?delete_s_number=<?php echo $row->s_number?>" class="badge badge-danger"><i class="fas fa-trash"></i> Delete Record</a>
+                                                        <a href="his_admin_view_single_patient.php?pat_number=<?php echo $row->pat_number;?>" class="badge badge-success"><i class="mdi mdi-eye"></i> View</a>
+                                                        <a href="his_admin_theatre_single_patient.php?pat_id=<?php echo $row->pat_id;?>" class="badge badge-primary"><i class="mdi mdi-check-box-outline "></i> Add Patient</a>
                                                     </td>
                                                 </tr>
                                                 </tbody>

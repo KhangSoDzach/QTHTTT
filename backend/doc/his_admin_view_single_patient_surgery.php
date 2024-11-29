@@ -3,7 +3,7 @@
   include('assets/inc/config.php');
   include('assets/inc/checklogin.php');
   check_login();
-  $aid=$_SESSION['ad_id'];
+  $aid=$_SESSION['doc_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,15 +27,16 @@
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
             <?php
-                $eqp_code=$_GET['eqp_code'];
-                $ret="SELECT  * FROM his_equipments WHERE eqp_code = ?";
+                $s_number=$_GET['s_number'];
+                $ret="SELECT  * FROM his_surgery WHERE s_number = ?";
                 $stmt= $mysqli->prepare($ret) ;
-                $stmt->bind_param('i',$eqp_code);
+                $stmt->bind_param('i',$s_number);
                 $stmt->execute() ;//ok
                 $res=$stmt->get_result();
                 //$cnt=1;
                 while($row=$res->fetch_object())
                 {
+                    $mysqlDateTime = $row->s_pat_date; //trim timestamp to dd/mm/yyyy formart
             ?>
 
                 <div class="content-page">
@@ -51,11 +52,11 @@
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
                                                 <li class="breadcrumb-item"><a href="his_admin_dashboard.php">Dashboard</a></li>
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Inventory</a></li>
-                                                <li class="breadcrumb-item active">Equipments | Assets</li>
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Surgery</a></li>
+                                                <li class="breadcrumb-item active">View Single Records</li>
                                             </ol>
                                         </div>
-                                        <h4 class="page-title">Equipment #<?php echo $row->eqp_code;?> Details</h4>
+                                        <h4 class="page-title">#<?php echo $row->s_number;?></h4>
                                     </div>
                                 </div>
                             </div>     
@@ -70,27 +71,28 @@
                                                 <div class="tab-content pt-0">
 
                                                     <div class="tab-pane active show" id="product-1-item">
-                                                        <img src="assets/images/hosp_asset.jpg" alt="" class="img-fluid mx-auto d-block rounded">
+                                                        <img src="assets/images/surg.png" alt="" class="img-fluid mx-auto d-block rounded">
                                                     </div>
                             
                                                 </div>
                                             </div> <!-- end col -->
                                             <div class="col-xl-7">
+                                            
                                                 <div class="pl-xl-3 mt-3 mt-xl-0">
-                                                    <h2 class="mb-3">Equipment Name : <?php echo $row->eqp_name;?></h2>
+                                                    <h2 class="mb-3">Patient's Name : <?php echo $row->s_pat_name;?></h2>
                                                     <hr>
-                                                    <h4 class="text-danger">Equipment Vendor: <?php echo $row->eqp_vendor;?></h4>
+                                                    <h3 class="align-centre ">Patient Number : <?php echo $row->s_pat_number;?></h3>
                                                     <hr>
-                                                    <h4 class="text-danger">Equipment Barcode: <?php echo $row->eqp_code;?></h4>
+                                                    <h3 class="align-centre ">Patient Ailment : <?php echo $row->s_pat_ailment;?></h3>
                                                     <hr>
-                                                    <h4 class="text-danger">Equipment(s) Available : <?php echo $row->eqp_qty;?></h4>
+                                                    <h3 class="align-centre ">Date Surgery Conducted : <?php echo date("d/m/Y", strtotime($mysqlDateTime));?></h3>
                                                     <hr>
-                                                    <h4 class="text-danger">Equipment Status : <?php echo $row->eqp_status;?></h4>
+                                                    <h2 class="align-centre">Surgeon :  <?php echo $row->s_doc;?> </h2>
                                                     <hr>
-                                                    <h4 class="text-danger">Equipment Description</h4>
-                                                    <p class="text-muted mb-4">
-                                                        <?php echo $row->eqp_desc;?>
-                                                    </p>
+                                                    <h2 class="align-centre">Surgery Status : <span class ="btn btn-success"> <?php echo $row->s_pat_status;?></span> </h2>
+                                                    <hr>
+                                                    
+                                                    
                                                    <!--
                                                     <form class="form-inline mb-4">
                                                         <label class="my-1 mr-2" for="quantityinput">Quantity</label>
