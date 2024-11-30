@@ -192,21 +192,6 @@
                                     </li>
                                 </ul>
                             </li> -->
-                            <li class="<?php echo strpos($_SERVER['PHP_SELF'], 'appointments') !== false ? 'active' : ''; ?>">
-                                <a href="javascript: void(0);">
-                                    <i class="mdi mdi-calendar-check"></i>
-                                    <span> Appointments </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="<?php echo strpos($_SERVER['PHP_SELF'], 'appointments') !== false ? 'true' : 'false'; ?>" 
-                                    style="<?php echo strpos($_SERVER['PHP_SELF'], 'appointments') !== false ? 'display: block;' : ''; ?>">
-                                    <li>
-                                        <a href="his_doc_manage_appointments.php" class="<?php echo strpos($_SERVER['PHP_SELF'], 'manage_appointments') !== false ? 'active' : ''; ?>">Manage Appointments</a>
-                                    </li>
-                                </ul>
-                            </li>
-
-
 
                             
 
