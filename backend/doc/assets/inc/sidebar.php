@@ -192,6 +192,7 @@
                                     </li>
                                 </ul>
                             </li> -->
+                            
                             <li class="<?php echo strpos($_SERVER['PHP_SELF'], 'appointments') !== false ? 'active' : ''; ?>">
                                 <a href="javascript: void(0);">
                                     <i class="mdi mdi-calendar-check"></i>

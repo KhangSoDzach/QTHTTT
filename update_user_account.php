@@ -6,20 +6,22 @@ if (isset($_POST['update_profile'])) {
     $user_fname = $_POST['user_fname'];
     $user_lname = $_POST['user_lname'];
     $user_email = $_POST['user_email'];
+    $user_rank = $_POST['user_rank'];  // New field for rank
+    $user_mobile = $_POST['user_mobile'];  // New field for phone number
     $user_id = $_SESSION['user_id'];
     $user_dpic = $_FILES["user_dpic"]["name"];
 
-    // Upload ảnh đại diện nếu có
+    // Upload avatar if provided
     if ($user_dpic != '') {
         move_uploaded_file($_FILES["user_dpic"]["tmp_name"], "assets/images/users/" . $user_dpic);
     } else {
-        $user_dpic = 'default.jpg'; // Giả sử ảnh mặc định nếu không có ảnh mới
+        $user_dpic = 'default.jpg'; // Default image if no new image is provided
     }
 
-    // Cập nhật thông tin người dùng
-    $query = "UPDATE users SET user_fname = ?, user_lname = ?, user_email = ?, user_dpic = ? WHERE user_id = ?";
+    // Update user profile information including rank and phone
+    $query = "UPDATE users SET user_fname = ?, user_lname = ?, user_email = ?, user_rank = ?, user_mobile = ?, user_dpic = ? WHERE user_id = ?";
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param('ssssi', $user_fname, $user_lname, $user_email, $user_dpic, $user_id);
+    $stmt->bind_param('ssssssi', $user_fname, $user_lname, $user_email, $user_rank, $user_mobile, $user_dpic, $user_id);
     $stmt->execute();
 
     if ($stmt) {
@@ -29,9 +31,9 @@ if (isset($_POST['update_profile'])) {
     }
 }
 
-// Cập nhật mật khẩu
+// Update password
 if (isset($_POST['update_pwd'])) {
-    $user_pwd = sha1(md5($_POST['user_pwd'])); // Mã hóa mật khẩu
+    $user_pwd = sha1(md5($_POST['user_pwd'])); // Encrypt password
 
     $query = "UPDATE users SET user_pwd = ? WHERE user_id = ?";
     $stmt = $mysqli->prepare($query);
@@ -53,7 +55,6 @@ if (isset($_POST['update_pwd'])) {
 <body>
     <div id="wrapper">
         <?php include('nav.php'); ?>
-        <?php include('backend/doc/assets/inc/sidebar.php'); ?>
 
         <?php
         $user_id = $_SESSION['user_id'];
@@ -76,7 +77,7 @@ if (isset($_POST['update_pwd'])) {
                             </div>
                         </div>
 
-                        <!-- Form Update Profile -->
+                        <!-- Display user info -->
                         <div class="row">
                             <div class="col-lg-4 col-xl-4">
                                 <div class="card-box text-center">
@@ -84,6 +85,8 @@ if (isset($_POST['update_pwd'])) {
                                     <div class="text-center mt-3">
                                         <p class="text-muted mb-2 font-13"><strong>Full Name:</strong> <span class="ml-2"><?php echo $row->user_fname . ' ' . $row->user_lname; ?></span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Email:</strong> <span class="ml-2"><?php echo $row->user_email; ?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Rank:</strong> <span class="ml-2"><?php echo $row->user_rank; ?></span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Phone:</strong> <span class="ml-2"><?php echo $row->user_mobile; ?></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -116,6 +119,7 @@ if (isset($_POST['update_pwd'])) {
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -125,11 +129,27 @@ if (isset($_POST['update_pwd'])) {
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
+                                                            <label>Rank</label>
+                                                            <input type="text" name="user_rank" class="form-control" value="<?php echo $row->user_rank; ?>"> <!-- Rank -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Phone Number</label>
+                                                            <input type="text" name="user_mobile" class="form-control" value="<?php echo $row->user_mobile; ?>"> <!-- Phone -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
                                                             <label>Profile Picture</label>
                                                             <input type="file" name="user_dpic" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="text-right">
                                                     <button type="submit" name="update_profile" class="btn btn-success">Save</button>
                                                 </div>
